@@ -1,0 +1,59 @@
+<html>
+<head><meta charset="UTF-8">
+    <style>
+        body{background-color:transparent;}
+        table {
+        background:transparent;
+        }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type=text/javascript src=tween.js></script>
+    <script type=text/javascript src=steelseries.js></script>
+</head>
+<body>
+<script>
+$(document).ready(function(){
+    barometerGauge.setValueAnimated(GetURLParameter("pressure"));
+    barometerGauge.setThreshold(GetURLParameter("mpressure"));
+});
+
+function GetURLParameter(sParam){
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++){
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam){
+            return sParameterName[1];
+        }
+    }
+}
+</script>
+
+<center>
+    <canvas id=barometerCanvas width=200 height=300></canvas>
+</center>
+
+<script>
+
+    barometerGauge = new steelseries.Radial('barometerCanvas', {
+        gaugeType: steelseries.GaugeType.TYPE4,
+        minValue:930,
+        maxValue:1070,
+        size: 200,
+        frameDesign: steelseries.FrameDesign.BRASS,
+        knobStyle: steelseries.KnobStyle.BRASS,
+        pointerType: steelseries.PointerType.TYPE6,
+        backgroundColor: steelseries.BackgroundColor.CARBON,
+        section: null,
+        lcdDecimals: 1,
+        area: null,
+        titleString: 'Barometric Pressure',
+        unitString: 'mbar',
+        threshold: 1000,
+        ledVisible: false,
+        lcdVisible: true
+    });
+
+</script>
+</body>
+</html>

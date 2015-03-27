@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MyActivity">
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_northThermostat" android:title="@string/action_northThermostat"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_southThermostat" android:title="@string/action_southThermostat"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_pool" android:title="@string/action_pool"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_garage" android:title="@string/action_garage"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_lights" android:title="@string/action_lights"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_weather" android:title="@string/action_weather"
+        android:orderInCategory="100" app:showAsAction="never" />
+    </menu>

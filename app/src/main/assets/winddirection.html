@@ -1,0 +1,51 @@
+<html>
+<head><meta charset="UTF-8">
+    <style>
+        body{background-color:transparent;}
+        table {
+        background:transparent;
+        }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type=text/javascript src=tween.js></script>
+    <script type=text/javascript src=steelseries.js></script>
+</head>
+<body>
+<script>
+$(document).ready(function(){
+    winddGauge.setValueAnimatedLatest(GetURLParameter("winddirection"));
+    winddGauge.setValueAnimatedAverage(GetURLParameter("winddirectionlast"));
+});
+
+function GetURLParameter(sParam){
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++){
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam){
+            return sParameterName[1];
+        }
+    }
+}
+</script>
+
+<center>
+    <canvas id=winddCanvas width=200 height=300></canvas>
+</center>
+
+<script>
+    winddGauge = new steelseries.WindDirection('winddCanvas', {
+        <!--gaugeType: steelseries.GaugeType.TYPE4,-->
+        size: 200,
+        frameDesign: steelseries.FrameDesign.BRASS,
+        knobStyle: steelseries.KnobStyle.BRASS,
+        pointerTypeLatest: steelseries.PointerType.TYPE6,
+        pointerTypeAverage: steelseries.PointerType.TYPE6,
+        lcdTitleStrings: ['Latest', 'Previous'],
+        backgroundColor: steelseries.BackgroundColor.CARBON,
+        section: null,
+        area: null
+    });
+</script>
+</body>
+</html>

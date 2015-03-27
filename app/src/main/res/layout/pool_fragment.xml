@@ -1,0 +1,100 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.desert_home.DesertHome.PoolFragment"
+    android:background="@drawable/border"
+    android:id="@+id/poolLayout"
+    android:orientation="vertical">
+
+    <!-- android:background="@android:color/transparent" -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/pLabel"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Swimming Pool"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text = "Motor Speed"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textStyle="bold" />
+            <RadioGroup
+                android:id="@+id/pRadioMotorGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/pRadioMotorOff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Off"
+                    android:checked="true" />
+                <RadioButton
+                    android:id="@+id/pRadioMotorLow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Low" />
+                <RadioButton
+                    android:id="@+id/pRadioMotorHigh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="High" />
+            </RadioGroup>
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal" >
+    <!--style="@android:style/ButtonBar"-->
+            <Switch
+                android:textOn="Light On"
+                android:textOff="Light Off"
+                android:id="@+id/pButtonLightSet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="Light" />
+            <Switch
+                android:id="@+id/pButtonWaterfallSet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="Waterfall" />
+            <Switch
+                android:id="@+id/pButtonFountainSet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="Fountain" />
+        </LinearLayout>
+            <TextView
+                android:id="@+id/pTemp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="Temperature"
+                android:background="@drawable/border"
+                android:textStyle="bold" />
+    </LinearLayout>
+</FrameLayout>

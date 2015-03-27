@@ -1,0 +1,53 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.desert_home.DesertHome.GarageFragment"
+    android:background="@drawable/border">
+
+    <!-- android:background="@android:color/transparent" -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#300000ff"
+        android:id="@+id/garageLayout"
+        >
+
+        <TextView
+            android:id="@+id/gLabel"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Garage Devices"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/gStatus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Status goes here"
+            android:background="@drawable/border"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/gSeparator"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Settings"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/gSettings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Settings go here"
+            android:background="@drawable/border"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</FrameLayout>

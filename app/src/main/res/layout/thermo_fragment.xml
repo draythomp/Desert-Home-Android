@@ -1,0 +1,88 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.desert_home.DesertHome.ThermoFragment"
+    android:background="@drawable/border"
+    android:id="@+id/thermoLayout">
+
+    <!-- android:background="@android:color/transparent" -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#300000ff"
+        >
+
+        <TextView
+            android:id="@+id/tLabel"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Some Thermostat"
+            android:textStyle="bold"
+            android:background="@drawable/bottom_line" />
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/tTempSpot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="80sp"
+                android:text="999"
+                android:textStyle="bold"/>
+
+            <ImageButton
+                android:id="@+id/tButtonActivitySpot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="NA"
+                android:adjustViewBounds="true"
+                android:layout_centerInParent="true"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:src="@drawable/fanblack"/>
+
+        </LinearLayout>
+        <LinearLayout android:id="@+id/tButtonBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            style="@android:style/ButtonBar">
+
+            <Button
+                android:id="@+id/tButtonTempSet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Temp" />
+
+            <Button
+                android:id="@+id/tButtonModeSet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mode" />
+            <Button
+                android:id="@+id/tButtonFanSet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fan" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,83 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.desert_home.DesertHome.WeatherFragment"
+    android:background="@drawable/border"
+    android:id="@+id/weatherLayout">
+
+    <!-- android:background="@android:color/transparent" -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#300000ff"
+        >
+
+        <TextView
+            android:id="@+id/wLabel"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Weather Station"
+            android:textStyle="bold" />
+       <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="650px"
+            android:orientation="horizontal"
+            >
+            <WebView
+                android:id="@+id/wWebview1"
+                android:layout_width="625px"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"/>
+            <WebView
+                android:id="@+id/wWebview2"
+                android:layout_width="625px"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"/>
+            <WebView
+                android:id="@+id/wWebview3"
+                android:layout_width="625px"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="650px"
+            android:gravity="center_horizontal"
+            >
+            <WebView
+                android:id="@+id/wWebview4"
+                android:layout_width="625px"
+                android:layout_height="match_parent"
+                />
+            <WebView
+                android:id="@+id/wWebview5"
+                android:layout_width="625px"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/wSeparator"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Settings"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/wSettings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="None yet"
+            android:background="@drawable/border"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</FrameLayout>

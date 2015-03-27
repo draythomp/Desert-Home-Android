@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Desert Home</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Next</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_northThermostat">N Thermostat</string>
+    <string name="action_southThermostat">S Thermostat</string>
+    <string name="action_pool">Pool</string>
+    <string name="action_garage">Garage</string>
+    <string name="action_lights">Lights</string>
+    <string name="action_weather">Weather Station</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_display_message">Howdy</string>
+    <string name="waitForData">Gathering Data</string>
+    <string name="Debug">DHInfo</string>
+
+    <string name="homeUrl">http://desert-home.ns01.us/housedata.php</string>
+    <string name="commandUrl">http://desert-home.ns01.us/command.php</string>
+    <string name="commandSecret">"secret=barkley"</string>
+
+    <string name="lWestPatioToggle">command=lights%20patioToggle</string>
+    <string name="lFrontPorchToggle">command=lights%20fPorchToggle</string>
+    <string name="lOutsideGarageToggle">command=lights%20garageToggle</string>
+    <string name="lCactusSpotToggle">command=lights%20cactusToggle</string>
+    <string name="lOutsideOn">command=lights%20OutsideLightsOn</string>
+    <string name="lOutsideOff">command=lights%20OutsideLightsOff</string>
+
+    <string name="wCardinals">{"NNW":337.5,"NW":315,"WNW":292.5,
+        "W":270,"WSW":247.5,"SW":225,"SSW":202.5,"S":180,
+        "SSE":157.5,"SE":135,"ESE":112.5,"E":90,"ENE":67.5,
+        "NE":45,"NNE":22.5,"N":0,"Wait":0}</string>
+
+
+    <string name="tNorthName">nthermo</string>
+    <string name="tSouthName">sthermo</string>
+    <string name="tFanOn">command=%s%%20fanOn</string>
+    <string name="tFanAuto">command=%s%%20fanAuto</string>
+    <string name="tFanRecirc">command=%s%%20fanRecirc</string>
+    <string name="tModeCool">command=%s%%20modeCool</string>
+    <string name="tModeHeat">command=%s%%20modeHeat</string>
+    <string name="tModeOff">command=%s%%20modeOff</string>
+    <string name="tTempUps">command=%s%%20tempUp</string>
+    <string name="tTempDown">command=%s%%20tempDown</string>
+    <string name="tTemp">command=%s%%20temp=</string>
+
+    <string name="pMotorOff">command=Pool%20pumpoff=</string>
+    <string name="pMotorLow">command=Pool%20pumplow=</string>
+    <string name="pMotorHigh">command=Pool%20pumphigh=</string>
+
+</resources>

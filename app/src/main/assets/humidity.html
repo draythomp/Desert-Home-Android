@@ -1,0 +1,55 @@
+<html>
+<head><meta charset="UTF-8">
+    <style>
+        body{background-color:transparent;}
+        table {
+        background:transparent;
+        }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type=text/javascript src=tween.js></script>
+    <script type=text/javascript src=steelseries.js></script>
+</head>
+<body>
+<script>
+$(document).ready(function(){
+    humidityGauge.setValueAnimated(GetURLParameter("humidity"));
+});
+
+function GetURLParameter(sParam){
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++){
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam){
+            return sParameterName[1];
+        }
+    }
+}
+</script>
+
+<center>
+    <canvas id=humidityCanvas width=200 height=300></canvas>
+</center>
+
+<script>
+    humidityGauge = new steelseries.Radial('humidityCanvas', {
+        gaugeType: steelseries.GaugeType.TYPE4,
+        minValue:0,
+        maxValue:100,
+        size: 200,
+        frameDesign: steelseries.FrameDesign.BRASS,
+        knobStyle: steelseries.KnobStyle.BRASS,
+        pointerType: steelseries.PointerType.TYPE6,
+        backgroundColor: steelseries.BackgroundColor.CARBON,
+        lcdDecimals: 0,
+        section: null,
+        area: null,
+        titleString: 'Humidity',
+        unitString: '%',
+        threshold: 50,
+        lcdVisible: true
+    });
+</script>
+</body>
+</html>
