@@ -86,6 +86,7 @@ public class GetDataFromHouse extends Service {
     public static Boolean garageSetToVisible = false;
     public static Boolean lightsSetToVisible = false;
     public static Boolean weatherSetToVisible = false;
+    public static Boolean presetsSetToVisible = false;
 
 
     public GetDataFromHouse() {

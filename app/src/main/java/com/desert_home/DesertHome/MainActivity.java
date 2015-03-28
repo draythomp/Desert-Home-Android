@@ -25,6 +25,7 @@ public class MainActivity extends ActionBarActivity {
     static public GarageFragment garage;
     static public LightsFragment lights;
     static public WeatherFragment weather;
+    static public PresetsFragment presets;
 
     static int oldrotation = 99; // to keep track of rotation changes
 
@@ -39,10 +40,11 @@ public class MainActivity extends ActionBarActivity {
         Log.v("DHInfo", "MainActivity onCreate");
         status = (StatusFragment) getFragmentManager().findFragmentById(R.id.status_place);
         if(savedInstanceState == null) {
-            Integer thing = 12;
-            if (thing == 12) thing++;
             fm = getFragmentManager();
             fm.executePendingTransactions();
+            FragmentTransaction fragmentTransaction;
+            // Getting this fragment will tell me if the various fragments have been
+            // created already
             testFragment = (ThermoFragment)getFragmentManager().findFragmentByTag("nthermoTag");
             fm.executePendingTransactions();
 
@@ -54,6 +56,15 @@ public class MainActivity extends ActionBarActivity {
             toast.show();
 
             if (testFragment == null){
+                presets = new PresetsFragment();
+                fragmentTransaction = fm.beginTransaction();
+                if (GetDataFromHouse.presetsSetToVisible)
+                    fragmentTransaction.show(presets);
+                else
+                    fragmentTransaction.hide(presets);
+                fragmentTransaction.add(R.id.fragmentContainer, presets, "presetsTag");
+                fragmentTransaction.commit();
+
             // create two fragments for the two thermostats
             // but first I have to add the name of the thermostat to
             // to the context so it knows who it is
@@ -66,69 +77,62 @@ public class MainActivity extends ActionBarActivity {
                 // Now, finally, add them to the screen
                 // But I add them hidden so they can be shown individually
                 // by choices from the options menu
-                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.add(R.id.fragmentContainer, nthermo, "nthermoTag");
-    //            fragmentTransaction.setCustomAnimations(R.animator.slide_in_from_right,
-    //                    R.animator.slide_out_to_left);
                 if (GetDataFromHouse.nThermoSetToVisible)
                     fragmentTransaction.show(nthermo);
                 else
                     fragmentTransaction.hide(nthermo);
                 fragmentTransaction.commit();
             }
+
             // Now the other thermostat
             Bundle sBundle = new Bundle();
             String myMessage = "South";
             sBundle.putString("Name", myMessage);
             sthermo = new ThermoFragment();
             sthermo.setArguments(sBundle);
-            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-//            fragmentTransaction.setCustomAnimations(android.R.animator.fade_in,
-//                    android.R.animator.fade_out);
+            fragmentTransaction = fm.beginTransaction();
             if (GetDataFromHouse.sThermoSetToVisible)
                 fragmentTransaction.show(sthermo);
             else
                 fragmentTransaction.hide(sthermo);
             fragmentTransaction.add(R.id.fragmentContainer, sthermo, "sthermoTag");
             fragmentTransaction.commit();
+
             // now a fragment for the pool
             pool = new PoolFragment();
             fragmentTransaction = fm.beginTransaction();
-//            fragmentTransaction.setCustomAnimations(android.R.animator.fade_in,
-//                    android.R.animator.fade_out);
             if (GetDataFromHouse.poolSetToVisible)
                 fragmentTransaction.show(pool);
             else
                 fragmentTransaction.hide(pool);
             fragmentTransaction.add(R.id.fragmentContainer, pool, "poolTag");
             fragmentTransaction.commit();
+
             // the garage
             garage = new GarageFragment();
             fragmentTransaction = fm.beginTransaction();
-//            fragmentTransaction.setCustomAnimations(android.R.animator.fade_in,
-//                    android.R.animator.fade_out);
             if (GetDataFromHouse.garageSetToVisible)
                 fragmentTransaction.show(garage);
             else
                 fragmentTransaction.hide(garage);
             fragmentTransaction.add(R.id.fragmentContainer, garage, "garageTag");
             fragmentTransaction.commit();
+
             // the various lights
             lights = new LightsFragment();
             fragmentTransaction = fm.beginTransaction();
-//            fragmentTransaction.setCustomAnimations(android.R.animator.fade_in,
-//                    android.R.animator.fade_out);
             if (GetDataFromHouse.lightsSetToVisible)
                 fragmentTransaction.show(lights);
             else
                 fragmentTransaction.hide(lights);
             fragmentTransaction.add(R.id.fragmentContainer, lights, "lightsTag");
             fragmentTransaction.commit();
+
             // the weather station
             weather = new WeatherFragment();
             fragmentTransaction = fm.beginTransaction();
-//            fragmentTransaction.setCustomAnimations(android.R.animator.fade_in,
-//                    android.R.animator.fade_out);
             if (GetDataFromHouse.weatherSetToVisible)
                 fragmentTransaction.show(weather);
             else
@@ -197,6 +201,10 @@ public class MainActivity extends ActionBarActivity {
                 WeatherFragment fragment = (WeatherFragment) fm.findFragmentByTag("weatherTag");
                 fragmentTransaction.show(fragment);
             }
+            if (GetDataFromHouse.presetsSetToVisible){
+                PresetsFragment fragment = (PresetsFragment) fm.findFragmentByTag("presetsTag");
+                fragmentTransaction.show(fragment);
+            }
 
             fragmentTransaction.commit();
 
@@ -234,6 +242,10 @@ public class MainActivity extends ActionBarActivity {
             menu.findItem(R.id.action_lights).setTitle('\u2714' + getString(R.string.action_lights));
         else
             menu.findItem(R.id.action_lights).setTitle(getString(R.string.action_lights));
+        if (GetDataFromHouse.presetsSetToVisible)
+            menu.findItem(R.id.action_presets).setTitle('\u2714' + getString(R.string.action_presets));
+        else
+            menu.findItem(R.id.action_presets).setTitle(getString(R.string.action_presets));
         if (GetDataFromHouse.weatherSetToVisible)
             menu.findItem(R.id.action_weather).setTitle('\u2714' + getString(R.string.action_weather));
         else
@@ -352,6 +364,23 @@ public class MainActivity extends ActionBarActivity {
             } else {
                 fragmentTransaction.hide(fragment);
                 GetDataFromHouse.weatherSetToVisible = false;
+            }
+            fragmentTransaction.commit();
+            return true;
+        }
+        else if (id == R.id.action_presets){
+            Log.v(getString(R.string.Debug), "Presets chosen");
+            FragmentManager fm = getFragmentManager();
+            PresetsFragment fragment = (PresetsFragment) getFragmentManager().findFragmentByTag("presetsTag");
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.animator.slide_in_from_right,
+                    R.animator.slide_out_to_right);
+            if(fragment.isHidden()) {
+                fragmentTransaction.show(fragment);
+                GetDataFromHouse.presetsSetToVisible = true;
+            } else {
+                fragmentTransaction.hide(fragment);
+                GetDataFromHouse.presetsSetToVisible = false;
             }
             fragmentTransaction.commit();
             return true;

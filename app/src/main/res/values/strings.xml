@@ -10,6 +10,7 @@
     <string name="action_garage">Garage</string>
     <string name="action_lights">Lights</string>
     <string name="action_weather">Weather Station</string>
+    <string name="action_presets">Presets</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_display_message">Howdy</string>
     <string name="waitForData">Gathering Data</string>
@@ -44,8 +45,32 @@
     <string name="tTempDown">command=%s%%20tempDown</string>
     <string name="tTemp">command=%s%%20temp=</string>
 
-    <string name="pMotorOff">command=Pool%20pumpoff=</string>
-    <string name="pMotorLow">command=Pool%20pumplow=</string>
-    <string name="pMotorHigh">command=Pool%20pumphigh=</string>
+    <string name="pMotorOff">command=pool%20pumpoff</string>
+    <string name="pMotorLow">command=pool%20pumplow</string>
+    <string name="pMotorHigh">command=pool%20pumphigh</string>
+    <string name="pLightOn">command=pool%20lighton</string>
+    <string name="pLightOff">command=pool%20lightoff</string>
+    <string name="pWaterfallOn">command=pool%20waterfallon</string>
+    <string name="pWaterfallOff">command=pool%20waterfalloff</string>
+    <string name="pFountainOn">command=pool%20fountainon</string>
+    <string name="pFountainOff">command=pool%20fountainoff</string>
+
+    <string name="gDoor1Open">command=garage%20door1open</string>
+    <string name="gDoor1Close">command=garage%20door1close</string>
+    <string name="gDoor2Open">command=garage%20door2open</string>
+    <string name="gDoor2Close">command=garage%20door2close</string>
+    <string name="gWaterHeaterOn">command=garage%20waterhon</string>
+    <string name="gWaterHeaterOff">command=garage%20waterhoff</string>
+
+    <string name="preAcOff">command=preset%20acoff</string>
+    <string name="preRecirc">command=preset%20recirc</string>
+    <string name="preAcAuto">command=preset%20auto</string>
+    <string name="preTemp98">command=preset%20temp98</string>
+    <string name="preSummerNight">command=preset%20summernight</string>
+    <string name="preWinterNight">command=preset%20winternight</string>
+    <string name="prePeakOff">command=preset%20peakno</string>
+    <string name="prePeakOn">command=preset%20peakyes</string>
+    <string name="preReset">command=resetcommand%20reset</string>
+
 
 </resources>
