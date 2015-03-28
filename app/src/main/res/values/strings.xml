@@ -12,13 +12,12 @@
     <string name="action_weather">Weather Station</string>
     <string name="action_presets">Presets</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_display_message">Howdy</string>
+   <string name="title_activity_display_message">Howdy</string>
     <string name="waitForData">Gathering Data</string>
     <string name="Debug">DHInfo</string>
 
     <string name="homeUrl">http://desert-home.ns01.us/housedata.php</string>
     <string name="commandUrl">http://desert-home.ns01.us/command.php</string>
-    <string name="commandSecret">"secret=barkley"</string>
 
     <string name="lWestPatioToggle">command=lights%20patioToggle</string>
     <string name="lFrontPorchToggle">command=lights%20fPorchToggle</string>

@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -36,6 +37,9 @@ public class MainActivity extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
+        SharedPreferences settings = getSharedPreferences("Stuff", MODE_PRIVATE);
+        GetDataFromHouse.SecretWord = (String) settings.getString("secret", "");
 
         Log.v("DHInfo", "MainActivity onCreate");
         status = (StatusFragment) getFragmentManager().findFragmentById(R.id.status_place);

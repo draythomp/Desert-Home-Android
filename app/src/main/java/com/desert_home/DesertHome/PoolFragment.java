@@ -130,7 +130,7 @@ public class PoolFragment extends Fragment implements View.OnClickListener{
                         SendDataToHouse sender = new SendDataToHouse();
                         sender.sendIt(getActivity(),getString(R.string.commandUrl),
                                 action,
-                                getString(R.string.commandSecret));
+                                GetDataFromHouse.SecretWord);
                         dialog.cancel();
                     }
                 });
@@ -159,7 +159,7 @@ public class PoolFragment extends Fragment implements View.OnClickListener{
                         SendDataToHouse sender = new SendDataToHouse();
                         sender.sendIt(getActivity(),getString(R.string.commandUrl),
                                 action,
-                                getString(R.string.commandSecret));
+                                GetDataFromHouse.SecretWord);
                         dialog.cancel();
                     }
                 });
@@ -188,7 +188,7 @@ public class PoolFragment extends Fragment implements View.OnClickListener{
                         SendDataToHouse sender = new SendDataToHouse();
                         sender.sendIt(getActivity(),getString(R.string.commandUrl),
                                 action,
-                                getString(R.string.commandSecret));
+                                GetDataFromHouse.SecretWord);
                         dialog.cancel();
                     }
                 });
@@ -217,7 +217,7 @@ public class PoolFragment extends Fragment implements View.OnClickListener{
                         SendDataToHouse sender = new SendDataToHouse();
                         sender.sendIt(getActivity(),getString(R.string.commandUrl),
                                 action,
-                                getString(R.string.commandSecret));
+                                GetDataFromHouse.SecretWord);
                         dialog.cancel();
                     }
                 });

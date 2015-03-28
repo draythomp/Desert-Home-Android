@@ -50,13 +50,13 @@ public class GarageFragment extends Fragment implements View.OnClickListener{
                 Log.v("DHInfo", "Garage Door 1 Button");
                 sender.sendIt(getActivity(), getString(R.string.commandUrl),
                         getString(R.string.gDoor1Close),
-                        getString(R.string.commandSecret));
+                        GetDataFromHouse.SecretWord);
                 break;
             case R.id.gButtonGarageDoor2:
                 Log.v("DHInfo", "Garage Door 2 Button");
                 sender.sendIt(getActivity(),getString(R.string.commandUrl),
                         getString(R.string.gDoor2Close),
-                        getString(R.string.commandSecret));
+                        GetDataFromHouse.SecretWord);
                 break;
             // the water heater has an actual on and off
             case R.id.gButtonWaterHeater:
@@ -64,11 +64,11 @@ public class GarageFragment extends Fragment implements View.OnClickListener{
                 if (GetDataFromHouse.waterHeaterPower.equalsIgnoreCase("off")) {
                     sender.sendIt(getActivity(), getString(R.string.commandUrl),
                             getString(R.string.gWaterHeaterOn),
-                            getString(R.string.commandSecret));
+                            GetDataFromHouse.SecretWord);
                 } else {
                     sender.sendIt(getActivity(), getString(R.string.commandUrl),
                             getString(R.string.gWaterHeaterOff),
-                            getString(R.string.commandSecret));
+                            GetDataFromHouse.SecretWord);
                 }
                 break;
         }

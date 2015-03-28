@@ -77,6 +77,7 @@ public class GetDataFromHouse extends Service {
     public static String mBarometricPressure= "Wait";
 
     public static String lastContact = "Not Yet";
+    public static String SecretWord = "Murphy";
 
     // These are for controlling the display when hidden
     // or rotated.

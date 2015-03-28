@@ -109,7 +109,7 @@ public class ThermoFragment extends Fragment implements View.OnClickListener{
                 SendDataToHouse sender = new SendDataToHouse();
                 sender.sendIt(getActivity(),getString(R.string.commandUrl),
                     String.format(getString(R.string.tTemp),_getThermoCmdName()) + gotback,
-                    getString(R.string.commandSecret));
+                        GetDataFromHouse.SecretWord);
                 dialog.cancel();
             }
         });
@@ -155,7 +155,7 @@ public class ThermoFragment extends Fragment implements View.OnClickListener{
                         SendDataToHouse sender = new SendDataToHouse();
                         sender.sendIt(getActivity(),getString(R.string.commandUrl),
                                 String.format(action,_getThermoCmdName()),
-                                getString(R.string.commandSecret));
+                                GetDataFromHouse.SecretWord);
                         dialog.cancel();
                     }
                 });
@@ -188,7 +188,7 @@ public class ThermoFragment extends Fragment implements View.OnClickListener{
                         SendDataToHouse sender = new SendDataToHouse();
                         sender.sendIt(getActivity(),getString(R.string.commandUrl),
                                 String.format(action,_getThermoCmdName()),
-                                getString(R.string.commandSecret));
+                                GetDataFromHouse.SecretWord);
                         dialog.cancel();
                     }
                 });

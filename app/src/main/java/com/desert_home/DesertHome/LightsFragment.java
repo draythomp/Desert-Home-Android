@@ -54,37 +54,37 @@ public class LightsFragment extends Fragment implements View.OnClickListener {
                 Log.v("DHInfo", "Front Porch Light Button");
                 sender.sendIt(getActivity(), getString(R.string.commandUrl),
                         getString(R.string.lFrontPorchToggle),
-                        getString(R.string.commandSecret));
+                        GetDataFromHouse.SecretWord);
                 break;
             case R.id.lButtonOutsideGarage:
                 Log.v("DHInfo", "Outside Garage Light Button");
                 sender.sendIt(getActivity(),getString(R.string.commandUrl),
                         getString(R.string.lOutsideGarageToggle),
-                        getString(R.string.commandSecret));
+                        GetDataFromHouse.SecretWord);
                 break;
             case R.id.lButtonCactusSpot:
                 Log.v("DHInfo", "Cactus Spot Light Button");
                 sender.sendIt(getActivity(),getString(R.string.commandUrl),
                         getString(R.string.lCactusSpotToggle),
-                        getString(R.string.commandSecret));
+                        GetDataFromHouse.SecretWord);
                 break;
             case R.id.lButtonWestPatio:
                 Log.v("DHInfo", "West Patio Light Button");
                 sender.sendIt(getActivity(),getString(R.string.commandUrl),
                         getString(R.string.lWestPatioToggle),
-                        getString(R.string.commandSecret));
+                        GetDataFromHouse.SecretWord);
                 break;
             case R.id.lButtonOutsideOn:
                 Log.v("DHInfo", "West Outside On Button");
                 sender.sendIt(getActivity(),getString(R.string.commandUrl),
                         getString(R.string.lOutsideOn),
-                        getString(R.string.commandSecret));
+                        GetDataFromHouse.SecretWord);
                 break;
             case R.id.lButtonOutsideOff:
                 Log.v("DHInfo", "West Outside On Button");
                 sender.sendIt(getActivity(),getString(R.string.commandUrl),
                         getString(R.string.lOutsideOff),
-                        getString(R.string.commandSecret));
+                        GetDataFromHouse.SecretWord);
                 break;
         }
 
