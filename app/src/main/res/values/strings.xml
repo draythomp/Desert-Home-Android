@@ -12,7 +12,7 @@
     <string name="action_weather">Weather Station</string>
     <string name="action_presets">Presets</string>
     <string name="title_activity_main">MainActivity</string>
-   <string name="title_activity_display_message">Howdy</string>
+    <string name="title_activity_display_message">Howdy</string>
     <string name="waitForData">Gathering Data</string>
     <string name="Debug">DHInfo</string>
 

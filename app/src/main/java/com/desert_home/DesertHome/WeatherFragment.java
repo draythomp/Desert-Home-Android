@@ -50,27 +50,8 @@ public class WeatherFragment extends Fragment {
     }
 
     private void showGauges(View view){
-        // This is just silly, There's no such thing as a static dictionary.
-        // And they don't have anything except a \ for adding quotes to a string
-        // So, I fell back to my old standby of a JSON string. I put it in the
-        // string resources and read it out. This gives me the rough equivalent of
-        // the python dictionary and I don't have to type \" for every stinking
-        // string.
-        //
-        // Also, using their various maps would have required me to do a put() for
-        // every single item every time I needed the darn thing. Silly.
-/*        JSONObject jsonObject=null;
-        float direction = 0f;
-        float lastDirection = 0f;
-       try {
-            jsonObject = new JSONObject(getString(R.string.wCardinals));
-            direction = (float)jsonObject.getDouble(GetDataFromHouse.windDirection);
-            lastDirection = (float)jsonObject.getDouble(GetDataFromHouse.windDirectionLast.toString());
-        } catch (JSONException je){
-            Log.e("something horrible", "error in Write", je);
-        } */
 
-        Log.e("something horrible", "last "+GetDataFromHouse.windDirectionLast+" new "+ GetDataFromHouse.windDirection);
+        Log.e("checking wind direction changes", "last "+GetDataFromHouse.windDirectionLast+" new "+ GetDataFromHouse.windDirection);
 
         String url;
         WebView wwv1 = (WebView) view.findViewById(R.id.wWebview1);

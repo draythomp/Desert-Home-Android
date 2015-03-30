@@ -1,5 +1,6 @@
 <html>
 <head><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=yes" />
     <style>
         body{background-color:transparent;}
         table {
@@ -13,10 +14,9 @@
 <body>
 <script>
 $(document).ready(function(){
-    windsGauge.setValueAnimated(GetURLParameter("windspeed"));
-    winddGauge.setValueAnimatedLatest(GetURLParameter("winddirection"));
-    winddGauge.setValueAnimatedAverage(GetURLParameter("winddirectionlast"));
-    humidityGauge.setValueAnimated(GetURLParameter("humidity"));
+    tempGauge.setValueAnimated(GetURLParameter("temperature"));
+    powerGauge.setValueAnimated(GetURLParameter("power"));
+    iTempGauge.setValueAnimated(GetURLParameter("itemperature"));
 });
 
 function GetURLParameter(sParam){
@@ -32,54 +32,61 @@ function GetURLParameter(sParam){
 </script>
 
 <center>
-    <canvas id=windsCanvas width=200 height=300></canvas>
-    <canvas id=winddCanvas width=200 height=300></canvas>
-    <canvas id=humidityCanvas width=200 height=300></canvas>
+    <canvas id=tempCanvas width=200 height=200></canvas>
+    <canvas id=powerCanvas width=200 height=200></canvas>
+    <canvas id=iTempCanvas width=200 height=200></canvas>
 </center>
 
 <script>
-    winddGauge = new steelseries.WindDirection('winddCanvas', {
-        <!--gaugeType: steelseries.GaugeType.TYPE4,-->
-        size: 200,
-        frameDesign: steelseries.FrameDesign.BRASS,
-        knobStyle: steelseries.KnobStyle.BRASS,
-        pointerTypeLatest: steelseries.PointerType.TYPE6,
-        pointerTypeAverage: steelseries.PointerType.TYPE6,
-        lcdTitleStrings: ['Latest', 'Previous'],
-        backgroundColor: steelseries.BackgroundColor.CARBON,
-        section: null,
-        area: null
-    });
-    windsGauge = new steelseries.Radial('windsCanvas', {
+     tempGauge = new steelseries.Radial('tempCanvas', {
         gaugeType: steelseries.GaugeType.TYPE4,
-        size: 200,
         minValue:0,
-        maxValue:30,
-        titleString: 'Wind Speed',
-        unitString: 'MPH',
+        maxValue:140,
+        size: 200,
         frameDesign: steelseries.FrameDesign.BRASS,
         knobStyle: steelseries.KnobStyle.BRASS,
         pointerType: steelseries.PointerType.TYPE6,
         backgroundColor: steelseries.BackgroundColor.CARBON,
-        threshold: 10,
+        section: null,
+        lcdDecimals: 0,
+        area: null,
+        titleString: 'Outside Temp',
+        unitString: '°F',
+        threshold: 100,
         lcdVisible: true
     });
-
-    humidityGauge = new steelseries.Radial('humidityCanvas', {
+    powerGauge = new steelseries.Radial('powerCanvas', {
+        gaugeType: steelseries.GaugeType.TYPE4,
+    minValue:0,
+          maxValue:15000,
+          size: 200,
+          frameDesign: steelseries.FrameDesign.BRASS,
+    knobStyle: steelseries.KnobStyle.BRASS,
+        pointerType: steelseries.PointerType.TYPE6,
+    backgroundColor: steelseries.BackgroundColor.CARBON,
+    lcdDecimals: 0,
+          section: null,
+          area: null,
+          titleString: 'Real Power',
+          unitString: 'Watts',
+          threshold: 10000,
+          lcdVisible: true
+          });
+     iTempGauge = new steelseries.Radial('iTempCanvas', {
         gaugeType: steelseries.GaugeType.TYPE4,
         minValue:0,
-        maxValue:100,
+        maxValue:140,
         size: 200,
         frameDesign: steelseries.FrameDesign.BRASS,
         knobStyle: steelseries.KnobStyle.BRASS,
         pointerType: steelseries.PointerType.TYPE6,
         backgroundColor: steelseries.BackgroundColor.CARBON,
-        lcdDecimals: 0,
         section: null,
+        lcdDecimals: 0,
         area: null,
-        titleString: 'Humidity',
-        unitString: '%',
-        threshold: 50,
+        titleString: 'Inside Temp',
+        unitString: '°F',
+        threshold: 100,
         lcdVisible: true
     });
 

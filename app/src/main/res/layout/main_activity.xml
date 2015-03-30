@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#200000ff"
+    android:background="#4000ff00"
     android:id="@+id/mainLayout"
     >
     <LinearLayout
@@ -18,7 +18,7 @@
             android:name="com.desert_home.DesertHome.StatusFragment"
             android:id="@+id/status_place"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             tools:layout="@layout/status_fragment"/>
 
         <LinearLayout
