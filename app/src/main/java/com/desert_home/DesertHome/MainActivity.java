@@ -221,7 +221,7 @@ public class MainActivity extends ActionBarActivity {
         // waste data usage. The async task is still running periodically, and
         // setting the boolean to false will allow it to start again
         GetDataFromHouse.isPaused = true;
-        Toast toast = Toast.makeText(getApplicationContext(), "Update Stopped", Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(getApplicationContext(), "Update Paused", Toast.LENGTH_SHORT);
         toast.show();
     }
 

@@ -47,38 +47,39 @@
         </LinearLayout>
        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="650px"
+            android:layout_height="220dp"
             android:orientation="horizontal"
+            android:gravity="center_horizontal"
             >
             <WebView
                 android:id="@+id/wWebview1"
-                android:layout_width="625px"
+                android:layout_width="210dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"/>
             <WebView
                 android:id="@+id/wWebview2"
-                android:layout_width="625px"
+                android:layout_width="210dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"/>
             <WebView
                 android:id="@+id/wWebview3"
-                android:layout_width="625px"
+                android:layout_width="210dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="650px"
+            android:layout_height="220dp"
             android:gravity="center_horizontal"
             >
             <WebView
                 android:id="@+id/wWebview4"
-                android:layout_width="625px"
+                android:layout_width="210dp"
                 android:layout_height="match_parent"
                 />
             <WebView
                 android:id="@+id/wWebview5"
-                android:layout_width="625px"
+                android:layout_width="210dp"
                 android:layout_height="match_parent"
                 />
         </LinearLayout>
