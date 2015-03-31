@@ -5,7 +5,8 @@ package com.desert_home.DesertHome;
  */
 import android.app.AlertDialog;
 import android.app.Fragment;
-import android.content.Context;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +16,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -43,17 +43,38 @@ public class ThermoFragment extends Fragment implements View.OnClickListener{
         //Inflate the layout for this fragment
         View view = inflater.inflate(
                 R.layout.thermo_fragment, container, false);
-        lastImage = 0;
+        lastImage = 0; // for reproducing the current fan image
 
         ((Button)view.findViewById(R.id.tButtonTempSet)).setOnClickListener(this);
         ((Button)view.findViewById(R.id.tButtonModeSet)).setOnClickListener(this);
         ((Button)view.findViewById(R.id.tButtonFanSet)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.tButtonLeaveLeft)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.tButtonLeaveRight)).setOnClickListener(this);
 
         _fillItIn(view);
         return view;
     }
 
+    private void moveMe(){
+        ThermoFragment fragment;
+        FragmentManager fm = getFragmentManager();
+        if (thermoName.equalsIgnoreCase("north")) {
+            fragment = (ThermoFragment) getFragmentManager().findFragmentByTag("nthermoTag");
+            GetDataFromHouse.nThermoSetToVisible = false;
+        } else {
+            fragment = (ThermoFragment) getFragmentManager().findFragmentByTag("sthermoTag");
+            GetDataFromHouse.sThermoSetToVisible = false;
+        }
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.animator.slide_in_from_right,
+                R.animator.slide_out_to_right);
+        fragmentTransaction.hide(fragment);
+        fragmentTransaction.commit();
+
+    }
+
     public void onClick(View v) {
+        Animation swellAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.swell_up);
         switch (v.getId()) {
             case R.id.tButtonFanSet:
                 Log.v("DHInfo", thermoName + "Fan Set Button");
@@ -66,6 +87,11 @@ public class ThermoFragment extends Fragment implements View.OnClickListener{
             case R.id.tButtonTempSet:
                 Log.v("DHInfo", thermoName + "Temp Set Button");
                 doTempDialog();
+                break;
+            case R.id.tButtonLeaveLeft:
+            case R.id.tButtonLeaveRight:
+                v.startAnimation(swellAnim);
+                moveMe();
                 break;
         }
     }
@@ -220,27 +246,27 @@ public class ThermoFragment extends Fragment implements View.OnClickListener{
         fanSetting.setText(_getFanSetting());
         //activityText.setText(_getActivity());
         if (_getActivity().equalsIgnoreCase("heating")) {
-            if (lastImage != R.drawable.fanred0) {
-                tactivity.setImageResource(R.drawable.fanred0);
-                lastImage = R.drawable.fanred0;
+            if (lastImage != R.drawable.fanred) {
+                tactivity.setImageResource(R.drawable.fanred);
+                lastImage = R.drawable.fanred;
                 tactivity.startAnimation(
-                        AnimationUtils.loadAnimation(getActivity(), R.anim.fananimate));
+                        AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_continuous));
             }
         }
         else if (_getActivity().equalsIgnoreCase("recirc")) {
-            if (lastImage != R.drawable.fangreen0) {
-                tactivity.setImageResource(R.drawable.fangreen0);
-                lastImage = R.drawable.fangreen0;
+            if (lastImage != R.drawable.fangreen) {
+                tactivity.setImageResource(R.drawable.fangreen);
+                lastImage = R.drawable.fangreen;
                 tactivity.startAnimation(
-                        AnimationUtils.loadAnimation(getActivity(), R.anim.fananimate));
+                        AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_continuous));
             }
         }
         else if (_getActivity().equalsIgnoreCase("cooling")) {
-            if (lastImage != R.drawable.fanblue0) {
-                lastImage = R.drawable.fanblue0;
-                tactivity.setImageResource(R.drawable.fanblue0);
+            if (lastImage != R.drawable.fanblue) {
+                lastImage = R.drawable.fanblue;
+                tactivity.setImageResource(R.drawable.fanblue);
                 tactivity.startAnimation(
-                        AnimationUtils.loadAnimation(getActivity(), R.anim.fananimate));
+                        AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_continuous));
             }
         }
         else {

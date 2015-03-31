@@ -5,13 +5,19 @@ package com.desert_home.DesertHome;
  */
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -49,12 +55,28 @@ public class PresetsFragment extends Fragment implements View.OnClickListener{
         ((Button)view.findViewById(R.id.prePeakOn)).setOnClickListener(this);
         ((Button)view.findViewById(R.id.prePeakOff)).setOnClickListener(this);
         ((Button)view.findViewById(R.id.prePassword)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.preButtonLeaveLeft)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.preButtonLeaveRight)).setOnClickListener(this);
 
         return view;
     }
 
+    private void moveMe(){
+        PresetsFragment fragment;
+        FragmentManager fm = getFragmentManager();
+        fragment = (PresetsFragment) getFragmentManager().findFragmentByTag("presetsTag");
+        GetDataFromHouse.presetsSetToVisible = false;
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.animator.slide_in_from_right,
+                R.animator.slide_out_to_right);
+        fragmentTransaction.hide(fragment);
+        fragmentTransaction.commit();
+    }
+
+
     public void onClick(View v) {
         SendDataToHouse sender = new SendDataToHouse();
+        Animation swellAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.swell_up);
         switch (v.getId()) {
             // The two garage doors are toggles, so the same command
             // will open or close the door -- may change that someday
@@ -109,6 +131,11 @@ public class PresetsFragment extends Fragment implements View.OnClickListener{
             case R.id.prePassword:
                 Log.v("DHInfo", "Preset Password");
                 doPasswordDialog();
+                break;
+            case R.id.preButtonLeaveLeft:
+            case R.id.preButtonLeaveRight:
+                v.startAnimation(swellAnim);
+                moveMe();
                 break;
         }
     }

@@ -30,6 +30,8 @@ public class MainActivity extends ActionBarActivity {
 
     static int oldrotation = 99; // to keep track of rotation changes
 
+    public MainActivity(){}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Fragment testFragment;
@@ -211,10 +213,25 @@ public class MainActivity extends ActionBarActivity {
             }
 
             fragmentTransaction.commit();
-
             return;
         }
-        GetDataFromHouse.stopCheck();
+        // This boolean stops the web get from being called in GetDataFromHouse
+        // When onPause is called, the application is obscured (not visible) or
+        // being stopped by the OS. That means web gets are useless, and just
+        // waste data usage. The async task is still running periodically, and
+        // setting the boolean to false will allow it to start again
+        GetDataFromHouse.isPaused = true;
+        Toast toast = Toast.makeText(getApplicationContext(), "Update Stopped", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+        // see the note in this class about onPause to understand this boolean
+        GetDataFromHouse.isPaused = false;
+        Toast toast = Toast.makeText(getApplicationContext(), "Update resumed", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override
@@ -393,8 +410,18 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-// Check to see if the network is available. Not much point to
-// continuing if you can't communicate
+    public void showToast(final String toast)
+    {
+        runOnUiThread(new Runnable() {
+            public void run()
+            {
+                Toast.makeText(MainActivity.this, toast, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    // Check to see if the network is available. Not much point to
+    // continuing if you can't communicate
     private boolean networkIsAvailable() {
         ConnectivityManager cm = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);

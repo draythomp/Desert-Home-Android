@@ -1,7 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.desert_home.DesertHome.PoolFragment"
     android:background="@drawable/border"
     android:id="@+id/poolLayout"
@@ -11,16 +11,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#300000ff"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/pLabel"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Swimming Pool"
-            android:background="@drawable/border"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            >
+
+            <Button
+                android:id="@+id/pButtonLeaveLeft"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:gravity="bottom"
+                android:background="@drawable/right_arrow"
+                />
+            <TextView
+                android:id="@+id/pLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:text="Swimming Pool"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/pButtonLeaveRight"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:gravity="bottom"
+                android:background="@drawable/right_arrow"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -29,6 +54,7 @@
                 android:id="@+id/pTextMotorSet"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textSize="20sp"
                 android:text = "Motor Speed"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -42,11 +68,11 @@
                 android:layout_weight="1"
                 />
         </LinearLayout>
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:orientation="horizontal" >
+            style="@android:style/ButtonBar"            android:orientation="horizontal" >
     <!--style="@android:style/ButtonBar"-->
             <Button
                 android:id="@+id/pButtonSetLight"

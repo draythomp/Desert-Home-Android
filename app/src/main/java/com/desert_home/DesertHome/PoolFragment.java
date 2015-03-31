@@ -5,12 +5,18 @@ package com.desert_home.DesertHome;
  */
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -43,13 +49,28 @@ public class PoolFragment extends Fragment implements View.OnClickListener{
         ((Button)view.findViewById(R.id.pButtonSetLight)).setOnClickListener(this);
         ((Button)view.findViewById(R.id.pButtonSetWaterfall)).setOnClickListener(this);
         ((Button)view.findViewById(R.id.pButtonSetFountain)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.pButtonLeaveLeft)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.pButtonLeaveRight)).setOnClickListener(this);
 
         _fillItIn(view);
         return view;
     }
 
+    private void moveMe(){
+        PoolFragment fragment;
+        FragmentManager fm = getFragmentManager();
+        fragment = (PoolFragment) getFragmentManager().findFragmentByTag("poolTag");
+        GetDataFromHouse.poolSetToVisible = false;
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.animator.slide_in_from_right,
+                R.animator.slide_out_to_right);
+        fragmentTransaction.hide(fragment);
+        fragmentTransaction.commit();
+    }
+
     public void onClick(View v) {
         SendDataToHouse sender = new SendDataToHouse();
+        Animation swellAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.swell_up);
         Button s = null;
         switch (v.getId()) {
             case R.id.pButtonSetMotor:
@@ -59,47 +80,19 @@ public class PoolFragment extends Fragment implements View.OnClickListener{
             case R.id.pButtonSetLight:
                 Log.v("DHInfo","Pool Light Set Button");
                 doLightDialog();
-/*                if (s.isChecked()) {
-                    // send the command
-                    sender.sendIt(getActivity(), getString(R.string.commandUrl),
-                            getString(R.string.pLightOn),
-                            getString(R.string.commandSecret));
-                } else {
-                    sender.sendIt(getActivity(), getString(R.string.commandUrl),
-                            getString(R.string.pLightOff),
-                            getString(R.string.commandSecret));
-                }*/
-
                 break;
             case R.id.pButtonSetWaterfall:
                 Log.v("DHInfo","Pool Waterfall Set Button");
                 doWaterfallDialog();
-                // send the command;
-/*                if (s.isChecked()) {
-                    // send the command
-                    sender.sendIt(getActivity(), getString(R.string.commandUrl),
-                            getString(R.string.pWaterfallOn),
-                            getString(R.string.commandSecret));
-                } else {
-                    sender.sendIt(getActivity(), getString(R.string.commandUrl),
-                            getString(R.string.pWaterfallOff),
-                            getString(R.string.commandSecret));
-                } */
                 break;
             case R.id.pButtonSetFountain:
                 Log.v("DHInfo","Pool Fountain Set Button");
                 doFountainDialog();
-                // send the command;
-/*                if (s.isChecked()) {
-                    // send the command
-                    sender.sendIt(getActivity(), getString(R.string.commandUrl),
-                            getString(R.string.pFountainOn),
-                            getString(R.string.commandSecret));
-                } else {
-                    sender.sendIt(getActivity(), getString(R.string.commandUrl),
-                            getString(R.string.pFountainOff),
-                            getString(R.string.commandSecret));
-                } */
+                break;
+            case R.id.pButtonLeaveLeft:
+            case R.id.pButtonLeaveRight:
+                v.startAnimation(swellAnim);
+                moveMe();
                 break;
         }
     }
@@ -114,8 +107,8 @@ public class PoolFragment extends Fragment implements View.OnClickListener{
         builder.setTitle("Select Setting")
                 .setItems(choices, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        String action ="";
-                        switch(choices[which]){
+                        String action = "";
+                        switch (choices[which]) {
                             case "Off":
                                 action = getString(R.string.pMotorOff);
                                 break;
@@ -126,9 +119,9 @@ public class PoolFragment extends Fragment implements View.OnClickListener{
                                 action = getString(R.string.pMotorHigh);
                                 break;
                         }
-                        Log.v("DHInfo","Pool Motor Set to " + choices[which] + " " + action + "<");
+                        Log.v("DHInfo", "Pool Motor Set to " + choices[which] + " " + action + "<");
                         SendDataToHouse sender = new SendDataToHouse();
-                        sender.sendIt(getActivity(),getString(R.string.commandUrl),
+                        sender.sendIt(getActivity(), getString(R.string.commandUrl),
                                 action,
                                 GetDataFromHouse.SecretWord);
                         dialog.cancel();

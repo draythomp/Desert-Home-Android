@@ -4,12 +4,15 @@ package com.desert_home.DesertHome;
  * Created by dave on 3/3/2015.
  */
 import android.app.Fragment;
-import android.media.Image;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -41,35 +44,57 @@ public class LightsFragment extends Fragment implements View.OnClickListener {
         ((ImageButton)view.findViewById(R.id.lButtonWestPatio)).setOnClickListener(this);
         ((Button)view.findViewById(R.id.lButtonOutsideOn)).setOnClickListener(this);
         ((Button)view.findViewById(R.id.lButtonOutsideOff)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.lButtonLeaveLeft)).setOnClickListener(this);
+        ((Button)view.findViewById(R.id.lButtonLeaveRight)).setOnClickListener(this);
+
+
 
         _fillItIn(view);
         return view;
     }
 
+    private void moveMe(){
+        LightsFragment fragment;
+        FragmentManager fm = getFragmentManager();
+        fragment = (LightsFragment) getFragmentManager().findFragmentByTag("lightsTag");
+        GetDataFromHouse.lightsSetToVisible = false;
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.animator.slide_in_from_right,
+                R.animator.slide_out_to_right);
+        fragmentTransaction.hide(fragment);
+        fragmentTransaction.commit();
+    }
+
+
     @Override
     public void onClick(View v) {
         SendDataToHouse sender = new SendDataToHouse();
+        Animation swellAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.swell_up);
         switch (v.getId()) {
             case R.id.lButtonFrontPorch:
                 Log.v("DHInfo", "Front Porch Light Button");
+                v.startAnimation(swellAnim);
                 sender.sendIt(getActivity(), getString(R.string.commandUrl),
                         getString(R.string.lFrontPorchToggle),
                         GetDataFromHouse.SecretWord);
                 break;
             case R.id.lButtonOutsideGarage:
                 Log.v("DHInfo", "Outside Garage Light Button");
+                v.startAnimation(swellAnim);
                 sender.sendIt(getActivity(),getString(R.string.commandUrl),
                         getString(R.string.lOutsideGarageToggle),
                         GetDataFromHouse.SecretWord);
                 break;
             case R.id.lButtonCactusSpot:
                 Log.v("DHInfo", "Cactus Spot Light Button");
+                v.startAnimation(swellAnim);
                 sender.sendIt(getActivity(),getString(R.string.commandUrl),
                         getString(R.string.lCactusSpotToggle),
                         GetDataFromHouse.SecretWord);
                 break;
             case R.id.lButtonWestPatio:
                 Log.v("DHInfo", "West Patio Light Button");
+                v.startAnimation(swellAnim);
                 sender.sendIt(getActivity(),getString(R.string.commandUrl),
                         getString(R.string.lWestPatioToggle),
                         GetDataFromHouse.SecretWord);
@@ -85,6 +110,11 @@ public class LightsFragment extends Fragment implements View.OnClickListener {
                 sender.sendIt(getActivity(),getString(R.string.commandUrl),
                         getString(R.string.lOutsideOff),
                         GetDataFromHouse.SecretWord);
+                break;
+            case R.id.lButtonLeaveLeft:
+            case R.id.lButtonLeaveRight:
+                v.startAnimation(swellAnim);
+                moveMe();
                 break;
         }
 

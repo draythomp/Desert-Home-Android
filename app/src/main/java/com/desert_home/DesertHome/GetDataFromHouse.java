@@ -88,7 +88,7 @@ public class GetDataFromHouse extends Service {
     public static Boolean lightsSetToVisible = false;
     public static Boolean weatherSetToVisible = false;
     public static Boolean presetsSetToVisible = false;
-
+    public static Boolean isPaused = false;
 
     public GetDataFromHouse() {
     }
@@ -99,7 +99,7 @@ public class GetDataFromHouse extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.v("DHInfo", "onStartCommand called starting web get");
-        super.onStartCommand(intent,flags,startId);
+        super.onStartCommand(intent, flags, startId);
         mHandler = new Handler(); //This is for the web update task
         mStatusChecker.run();
         // if it is started any other way, it hangs around after leaving
@@ -115,18 +115,17 @@ public class GetDataFromHouse extends Service {
 
     // This will run the update from the web every "mInterval" seconds
     // It's fun to watch the items change at the house over the phone
-    Runnable mStatusChecker = new Runnable() {
+    public Runnable mStatusChecker = new Runnable() {
         @Override
         public void run() {
-            new downloadWebpageTask().execute(getString(R.string.homeUrl));
+            // The pause boolean will stop web gets from eating data usage
+            // when the application is not visible.
+            if(!isPaused) {
+                new downloadWebpageTask().execute(getString(R.string.homeUrl));
+            }
             mHandler.postDelayed(mStatusChecker, mInterval);
         }
     };
-
-    public static void stopCheck(){
-        Log.v("DHInfo", "stopCheck called disabling web get");
-        mHandler.removeCallbacksAndMessages(null);
-    }
 
     // Here is the stuff to get the web data from the house
     // It runs in the background so you can push buttons to
@@ -148,15 +147,11 @@ public class GetDataFromHouse extends Service {
             // Post processing
             // here I update the various fields for the house devices.
             if(result != null) {
-                Context context = getApplicationContext();
-                CharSequence text = "Updated";
-                int duration = Toast.LENGTH_SHORT;
-
                 Calendar c = Calendar.getInstance();
                 SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
                 lastContact = df.format(c.getTime());
                 // show a short message to keep me informed
-                Toast toast = Toast.makeText(context, text, duration);
+                Toast toast = Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT);
                 toast.show();
 
                 try {
@@ -206,7 +201,7 @@ public class GetDataFromHouse extends Service {
                     JSONObject jsonObject=null;
                     float temp = 0f;
                     try {
-                        jsonObject = new JSONObject(context.getString(R.string.wCardinals));
+                        jsonObject = new JSONObject(getApplicationContext().getString(R.string.wCardinals));
                         temp = (float)jsonObject.getDouble(houseData.getString("wd"));
                     } catch (JSONException je){
                         Log.e("something horrible", "error in Write", je);
@@ -214,8 +209,6 @@ public class GetDataFromHouse extends Service {
                     if (!windDirection.equals(temp))
                         windDirectionLast = new Float(windDirection); // save the last reading
                     windDirection = temp;
-                    Log.e("something horrible", "last "+windDirectionLast+" new "+ windDirection);
-
                     humidity = houseData.getString("hy");
                     roofTopTemp = houseData.getString("rtt");
                     // barometric pressure from my fencepost device
@@ -271,7 +264,6 @@ public class GetDataFromHouse extends Service {
                 Log.v(getResources().getString(R.string.Debug), "The response is: " + response);
                 if (response == 200) {
                     is = conn.getInputStream();
-
                     // Convert the InputStream into a string
                     return getString(is, len);
                 }

@@ -1,7 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.desert_home.DesertHome.PresetsFragment"
     android:background="@drawable/border">
 
@@ -16,14 +16,38 @@
         android:id="@+id/presetsLayout"
         >
 
-        <TextView
-            android:id="@+id/gLabel"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="House Presets"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            >
+            <Button
+                android:id="@+id/preButtonLeaveLeft"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:gravity="bottom"
+                android:background="@drawable/right_arrow"
+                />
+            <TextView
+                android:id="@+id/preLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:text="House Presets"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/preButtonLeaveRight"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:gravity="bottom"
+                android:background="@drawable/right_arrow"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

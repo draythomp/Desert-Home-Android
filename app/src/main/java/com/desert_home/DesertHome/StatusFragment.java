@@ -58,7 +58,7 @@ public class StatusFragment extends Fragment {
                 + "&power=" + GetDataFromHouse.rPower;
         www.loadUrl(url);
         www.setBackgroundColor(Color.TRANSPARENT);
-        www.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
+        www.setLayerType(WebView.LAYER_TYPE_HARDWARE, null);
     }
 
     @Override
